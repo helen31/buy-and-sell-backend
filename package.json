@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run-server": "nodemon --exec npx babel-node src/server.js",
+    "run-server": "npx nodemon --exec npx babel-node src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,6 +20,7 @@
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "@hapi/boom": "^10.0.0",
-    "@hapi/hapi": "^20.2.2"
+    "@hapi/hapi": "^20.2.2",
+    "mysql": "^2.18.1"
   }
 }
