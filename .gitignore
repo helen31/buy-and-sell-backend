@@ -5,3 +5,5 @@ yarn-error.log
 
 # IDEs and editors
 .idea/
+
+credentials.json
