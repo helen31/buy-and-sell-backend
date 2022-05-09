@@ -10,7 +10,6 @@ export const getUserListingsRoute = {
         const userId = req.params.userId;
         const user = await admin.auth().verifyIdToken(token);
 
-console.log('userId', req.params);
         if (user.user_id !== userId)  {
             throw Boom.unauthorized('User can only access their own listings!');
         }
