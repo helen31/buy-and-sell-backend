@@ -1,19 +1,25 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import Hapi from '@hapi/hapi';
+import inert from '@hapi/inert';
+import * as admin from 'firebase-admin';
 import routes from './routes';
 import { db } from './database';
-import * as admin from 'firebase-admin';
 import credentials from '../credentials.json';
 
 admin.initializeApp({
-  credential: admin.credential.cert(credentials)
+    credential: admin.credential.cert(credentials),
 });
 
 let server;
+
 const start = async () => {
     server = Hapi.server({
-        port: 8000,
-        host: 'localhost'
+        port: 8080,
+        host: '0.0.0.0',
     });
+
+    await server.register(inert);
 
     routes.forEach(route => server.route(route));
 
@@ -29,8 +35,9 @@ process.on('unhandledRejection', err => {
 
 process.on('SIGINT', async () => {
     console.log('Stopping server...');
-    await server.stop({ timeout: 1000 });
+    await server.stop({ timeout: 10000 });
     db.end();
+    console.log('Server stopped');
     process.exit(0);
 });
 

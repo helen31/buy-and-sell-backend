@@ -7,3 +7,7 @@ yarn-error.log
 .idea/
 
 credentials.json
+
+/dist
+
+/build
